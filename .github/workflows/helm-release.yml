@@ -31,7 +31,7 @@ jobs:
       - name: Release artifacts to GitHub
         uses: ncipollo/release-action@v1
         with:
-          artifacts: ./falcon*.tar.tgz
+          artifacts: ./falcon*.tgz
           allowUpdates: true
           name: Release ${{ github.ref }}
           token: ${{ secrets.CR_TOKEN }}
