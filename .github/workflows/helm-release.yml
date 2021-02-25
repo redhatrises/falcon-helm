@@ -34,7 +34,7 @@ jobs:
           artifacts: ./falcon*.tar.tgz
           allowUpdates: true
           name: Release ${{ github.ref }}
-          token: ${{ secrets.CR_TOKEN }
+          token: ${{ secrets.CR_TOKEN }}
 
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.2.0
