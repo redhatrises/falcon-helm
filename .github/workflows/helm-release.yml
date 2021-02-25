@@ -24,6 +24,18 @@ jobs:
         with:
           version: v3.4.0
 
+      - name: Create Helm release artifacts
+        run: |
+          helm package ./helm-charts/falcon-sensor
+
+      - name: Release artifacts to GitHub
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: ./falcon*.tar.tgz
+          allowUpdates: true
+          name: Release ${{ github.ref }}
+          token: ${{ secrets.CR_TOKEN }
+
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.2.0
         env:
