@@ -80,26 +80,15 @@ spec:
       # restarts.
       - name: init-falconstore
         image: "{{ .Values.node.image.repository }}:{{ .Values.node.image.tag }}"
-        command: ["/bin/sh"]
-        args: [-c, 'touch /var/lib/crowdstrike/falconstore']
+        command: ["/bin/bash"]
+        args: [-c, 'mkdir -p /opt/CrowdStrike']
         volumeMounts:
           - name: falconstore-dir
-            mountPath: /var/lib/crowdstrike
+            mountPath: /opt
       containers:
       - name: falcon-node-sensor
         image: "{{ .Values.node.image.repository }}:{{ .Values.node.image.tag }}"
         imagePullPolicy: "{{ .Values.node.image.pullPolicy }}"
-        volumeMounts:
-        - name: dev
-          mountPath: /dev
-        - name: var-run
-          mountPath: /var/run
-        - name: etc
-          mountPath: /etc
-        - name: var-log
-          mountPath: /var/log
-        - name: falconstore
-          mountPath: /opt/CrowdStrike/falconstore
         # Various pod security context settings. Bear in mind that many of these have an impact
         # on the Falcon Sensor working correctly.
         #
@@ -116,23 +105,10 @@ spec:
         - configMapRef:
             name: {{ include "falcon-sensor.fullname" . }}-config
       volumes:
-        - name: dev
-          hostPath:
-            path: /dev
-        - name: etc
-          hostPath:
-            path: /etc
-        - name: var-run
-          hostPath:
-            path: /var/run
-        - name: var-log
-          emptyDir: {}
-        - name: falconstore
-          hostPath:
-            path: /var/lib/crowdstrike/falconstore
         - name: falconstore-dir
           hostPath:
-            path: /var/lib/crowdstrike
+            path: /opt
+            type: DirectoryOrCreate
       serviceAccountName: crowdstrike-falcon-sa
       terminationGracePeriodSeconds: {{ .Values.node.terminationGracePeriod }}
       hostNetwork: true
