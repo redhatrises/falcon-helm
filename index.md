@@ -19,7 +19,7 @@ helm repo update
 
 Install the CrowdStrike Falcon Helm Chart by running:
 ```
-helm upgrade --install falcon-helm redhatrises/falcon-sensor \
+helm upgrade --install falcon-helm crowdstrike/falcon-sensor \
     -n falcon-system --create-namespace \
     --set falcon.cid="<CrowdStrike_CID>" \
     --set node.image.repository="<Your_Registry>/falcon-node-sensor"
@@ -28,7 +28,7 @@ helm upgrade --install falcon-helm redhatrises/falcon-sensor \
 You can also install the CrowdStrike Falcon Helm Chart with the release name `falcon-helm` in the namespace your `kubectl` context is currently set to by running the following:
 
 ```
-helm upgrade --install falcon-helm redhatrises/falcon-sensor \
+helm upgrade --install falcon-helm crowdstrike/falcon-sensor \
     --set falcon.cid="<CrowdStrike_CID>" \
     --set node.image.repository="<Your_Registry>/falcon-node-sensor"
 ``` 
