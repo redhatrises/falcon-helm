@@ -14,7 +14,7 @@
 apiVersion: admissionregistration.k8s.io/v1
 kind: MutatingWebhookConfiguration
 metadata:
-  name: {{ include "falcon-sensor.name" . }}-injector
+  name: {{ include "falcon-sensor.name" . }}-injector2
   labels:
     app: {{ include "falcon-sensor.name" . }}
     app.kubernetes.io/name: {{ include "falcon-sensor.name" . }}
