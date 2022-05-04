@@ -26,12 +26,12 @@ jobs:
 
       - name: Create Helm release artifacts
         run: |
-          helm package ./helm-charts/falcon-sensor
+          helm package ./helm-charts/*
 
       - name: Release artifacts to GitHub
         uses: ncipollo/release-action@v1
         with:
-          artifacts: ./falcon*.tgz
+          artifacts: ./*.tgz
           allowUpdates: true
           name: ${{ github.event.release.tag_name }}
           token: ${{ secrets.GITHUB_TOKEN }}
