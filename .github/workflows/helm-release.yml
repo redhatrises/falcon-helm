@@ -1,9 +1,9 @@
-name: Release Helm Charts
+name: Release Charts
 
 on:
-  release:
-    types:
-      - created
+  push:
+    branches:
+      - main
 
 jobs:
   release:
@@ -18,30 +18,15 @@ jobs:
         run: |
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
-
       - name: Install Helm
         uses: azure/setup-helm@v1
         with:
-          version: v3.8.1
+          version: v3.4.0
 
-      - name: Create Helm release artifacts
-        run: |
-          helm package ./helm-charts/*
-
-      - name: Release artifacts to GitHub
-        uses: ncipollo/release-action@v1
+      - name: Run chart-releaser
+        uses: helm/chart-releaser-action@v1.2.1
         with:
-          artifacts: ./*.tgz
-          allowUpdates: true
-          name: ${{ github.event.release.tag_name }}
-          token: ${{ secrets.GITHUB_TOKEN }}
+          charts_dir: helm-charts
 
-      - name: Update index.yaml
-        run: |
-          git fetch origin gh-pages
-          git reset --hard HEAD
-          git checkout gh-pages
-          helm repo index . --url https://github.com/${{ github.repository }}/releases/download/${{ github.event.release.tag_name }} --merge index.yaml
-          git add index.yaml
-          git commit -m "Update index.yaml to latest Helm release"
-          git push origin gh-pages
+        env:
+          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
