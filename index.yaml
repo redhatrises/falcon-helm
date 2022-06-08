@@ -3,6 +3,31 @@ entries:
   falcon-integration-gateway:
   - apiVersion: v2
     appVersion: 3.0.6
+    created: "2022-06-08T18:19:08.251354427Z"
+    description: Falcon Integration Gateway for cloud
+    digest: 00a9b9bca0da28f61b006557d1bbccca4623f16e79ae678915630ef73e26b45f
+    home: https://crowdstrike.com
+    icon: https://raw.githubusercontent.com/CrowdStrike/falcon-helm/main/images/crowdstrike-logo.svg
+    keywords:
+    - CrowdStrike
+    - Falcon
+    - EDR
+    - security
+    - monitoring
+    - alerting
+    kubeVersion: '>1.15.0-0'
+    maintainers:
+    - email: integrations@crowdstrike.com
+      name: CrowdStrike Solutions Architecture
+    name: falcon-integration-gateway
+    sources:
+    - https://github.com/CrowdStrike/falcon-helm
+    type: application
+    urls:
+    - https://github.com/redhatrises/falcon-helm/releases/download/falcon-integration-gateway-0.1.1/falcon-integration-gateway-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 3.0.6
     created: "2022-05-04T20:15:35.379002727Z"
     description: Falcon Integration Gateway for cloud
     digest: 44a95c042005cda526681d79db2afb450b96f4c9342988fbee40e85263009d2f
@@ -27,6 +52,33 @@ entries:
     - https://github.com/redhatrises/falcon-helm/releases/download/1.16.3/falcon-integration-gateway-0.1.0.tgz
     version: 0.1.0
   falcon-sensor:
+  - apiVersion: v2
+    appVersion: 1.17.2
+    created: "2022-06-08T18:19:08.360177214Z"
+    description: A Helm chart to deploy CrowdStrike Falcon sensors into Kubernetes
+      clusters.
+    digest: 695f3435cd24d0194271526197d23b0c7dec74a49359fabda8c7a3c7e625caac
+    home: https://crowdstrike.com
+    icon: https://raw.githubusercontent.com/CrowdStrike/falcon-helm/main/images/crowdstrike-logo.svg
+    keywords:
+    - CrowdStrike
+    - Falcon
+    - EDR
+    - kubernetes
+    - security
+    - monitoring
+    - alerting
+    kubeVersion: '>1.15.0-0'
+    maintainers:
+    - email: integrations@crowdstrike.com
+      name: CrowdStrike Solutions Architecture
+    name: falcon-sensor
+    sources:
+    - https://github.com/CrowdStrike/falcon-helm
+    type: application
+    urls:
+    - https://github.com/redhatrises/falcon-helm/releases/download/falcon-sensor-1.17.2/falcon-sensor-1.17.2.tgz
+    version: 1.17.2
   - apiVersion: v2
     appVersion: 1.16.5
     created: "2022-05-04T20:35:00.007549877Z"
@@ -324,4 +376,4 @@ entries:
     urls:
     - https://github.com/CrowdStrike/falcon-helm/releases/download/0.5.0/falcon-sensor-0.5.0.tgz
     version: 0.5.0
-generated: "2022-05-04T20:35:00.007710977Z"
+generated: "2022-06-08T18:19:08.360252115Z"
