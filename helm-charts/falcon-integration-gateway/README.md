@@ -63,3 +63,5 @@ helm install -n test --create-namespace --generate-name ./falcon-integration-gat
      --set push.azure_log_analytics.workspace_id=1234ab-cdef-abc7d-acdb-82321223 \
      --set push.azure_log_analytics.primary_key=ASDFzxy/vgC/m6HKOY6bqi5g==
 ```
+
+TEST
