@@ -48,4 +48,4 @@ jobs:
         if: steps.list-changed.outputs.changed == 'true'
 
       - name: Run chart-testing (install)
-        run: ct install --config tests/ct.yaml --helm-extra-set-args "--set container.image.tag=${{ secrets.FALCON_SIDECAR_TAG }} --set container.image.pullSecrets.registryConfigJSON=${{ secrets.FALCON_REGISTRY_TOKEN }} --set falcon.cid=${{ secrets.FALCON_CID }}" --helm-extra-args="--timeout 500s"
+        run: ct install --config tests/ct.yaml --helm-extra-set-args "--set container.image.tag=${{ secrets.FALCON_SIDECAR_TAG }} --set container.image.pullSecrets.registryConfigJSON=${{ secrets.FALCON_REGISTRY_TOKEN }} --set falcon.cid=${{ secrets.FALCON_CID }}"
