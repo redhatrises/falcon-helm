@@ -33,9 +33,14 @@ jobs:
       - name: Run chart-testing (lint)
         run: ct lint --config tests/ct.yaml
 
+      - name: Add Node chart
+        run: |
+          rm -f helm-charts/falcon-sensor/ci/cid-values.yaml
+          cp tests/sidecar-values.yaml helm-charts/falcon-sensor/ci/sidecar-values.yaml
+
       - name: Create kind cluster
         uses: helm/kind-action@v1.4.0
         if: steps.list-changed.outputs.changed == 'true'
 
       - name: Run chart-testing (install)
-        run: ct install --config tests/ct.yaml
+        run: ct install --config tests/ct.yaml --helm-extra-set-args "--set container.image.tag=${{ secrets.FALCON_SIDECAR_TAG }} --set container.image.registryConfigJSON=${{ secrets.FALCON_REGISTRY_TOKEN }} --set falcon.cid=${{ secrets.FALCON_CID }}" --helm-extra-args="--timeout 500s"

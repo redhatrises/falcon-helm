@@ -1,0 +1,17 @@
+falcon:
+  trace: none
+node:
+  enabled: false
+container:
+  enabled: true
+  image:
+    repository: "registry.crowdstrike.com/falcon-container/us-2/release/falcon-sensor"
+    pullSecrets:
+      enable: true
+    sensorResources:
+      limits:
+        cpu: 50m
+        memory: 128Mi
+      requests:
+        cpu: 50m
+        memory: 128Mi
