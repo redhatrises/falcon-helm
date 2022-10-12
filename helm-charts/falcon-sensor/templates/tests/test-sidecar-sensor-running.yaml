@@ -40,6 +40,7 @@ spec:
             sleep 30
             kubectl get pods -n nginx
             kubectl get events -n nginx
+            kubectl describe pods -n nginx
             kubectl get pods -n nginx -o jsonpath="{.items[*].spec.containers[*].name} {.items[*].status.containerStatuses[*].state}"
             exit 0
         fi
