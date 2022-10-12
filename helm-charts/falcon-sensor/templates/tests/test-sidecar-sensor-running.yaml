@@ -40,7 +40,7 @@ spec:
         echo "Waiting 15 seconds to allow pod time to initialize before running test"
         sleep 15
         KUBECMD2=$(kubectl get pods -n busybox --field-selector=status.phase!=Running -o jsonpath="{.items[*].spec.containers[*].name}")
-        if ! echo "${KUBECMD2}" | grep -q "crowdstrike-falcon-container"; then
+        if echo "${KUBECMD2}" | grep -q "crowdstrike-falcon-container"; then
             echo "[\033[0;31mFAIL\033[0m]: crowdstrike-falcon-container sidecar container is NOT injected"
             echo "${KUBECMD2}"
             exit 1
