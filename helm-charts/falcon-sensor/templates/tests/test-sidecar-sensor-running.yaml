@@ -27,11 +27,12 @@ spec:
             echo "[\033[0;32mOK\033[0m]: Injector pod is running"
 
             echo "Running test pod to verify sidecar injection"
-            kubectl run nginx --image=nginx --restart=Never
+            kubectl create namespace nginx
+            kubectl run nginx -n nginx --image=nginx --restart=Never
 
             echo "Waiting 10 seconds to allow pod time to initialize before running test"
             sleep 10
-            kubectl get pods -n "{{ .Release.Namespace }}" -o jsonpath="{.items[*].spec.containers[*].name} {.items[*].status.containerStatuses[*].state}"
+            kubectl get pods -n nginx -o jsonpath="{.items[*].spec.containers[*].name} {.items[*].status.containerStatuses[*].state}"
             exit 0
         fi
       securityContext:
