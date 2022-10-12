@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: "{{ include "falcon-sensor.fullname" . }}-test-ds-deployment"
+  name: "{{ include "falcon-sensor.fullname" . }}-test-sidecar-sensor-running"
   namespace: {{ .Release.Namespace }}
   labels:
     {{- include "falcon-sensor.labels" . | nindent 4 }}
@@ -23,6 +23,7 @@ spec:
             exit 1
         else
             echo "[\033[0;32mOK\033[0m]: Injector pod is running"
+            kubectl get pods -n bash -o jsonpath="{.items[*].spec.containers[*].name} {.items[*].status.containerStatuses[*].state}"
             exit 0
         fi
       securityContext:
