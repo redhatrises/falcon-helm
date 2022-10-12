@@ -33,6 +33,7 @@ spec:
             echo "Waiting 10 seconds to allow pod time to initialize before running test"
             sleep 30
             kubectl get pods -n nginx
+            kubectl get events -n nginx
             kubectl get pods -n nginx -o jsonpath="{.items[*].spec.containers[*].name} {.items[*].status.containerStatuses[*].state}"
             exit 0
         fi
