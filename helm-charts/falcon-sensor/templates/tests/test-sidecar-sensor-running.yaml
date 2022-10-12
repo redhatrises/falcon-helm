@@ -34,10 +34,10 @@ spec:
             echo "[\033[0;32mOK\033[0m]: Injector pod is running"
 
             echo "Running test pod to verify sidecar injection"
-            kubectl run nginx -n nginx --image=nginx --restart=Never
+            kubectl run busybox --image=busybox --restart=Never --command sleep 30
 
             echo "Waiting 10 seconds to allow pod time to initialize before running test"
-            sleep 30
+            sleep 10
             kubectl get pods -n nginx
             kubectl get events -n nginx
             kubectl describe pods -n nginx
