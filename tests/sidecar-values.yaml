@@ -8,7 +8,7 @@ container:
     repository: "registry.crowdstrike.com/falcon-container/us-2/release/falcon-sensor"
     pullSecrets:
       enable: true
-      namespaces: "nginx"
+      namespaces: "busybox"
     sensorResources:
       limits:
         cpu: 50m
