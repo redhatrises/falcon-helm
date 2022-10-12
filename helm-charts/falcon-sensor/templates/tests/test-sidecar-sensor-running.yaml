@@ -3,8 +3,8 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: nginx
-  namespace: nginx
+  name: busybox
+  namespace: busybox
 ---
 apiVersion: v1
 kind: Pod
@@ -34,14 +34,15 @@ spec:
             echo "[\033[0;32mOK\033[0m]: Injector pod is running"
 
             echo "Running test pod to verify sidecar injection"
-            kubectl run busybox -n nginx --image=busybox --restart=Never --command sleep 30
+            kubectl run busybox -n busybox --image=busybox --restart=Never --command sleep 120
 
-            echo "Waiting 10 seconds to allow pod time to initialize before running test"
-            sleep 10
-            kubectl get pods -n nginx
-            kubectl get events -n nginx
-            kubectl describe pods -n nginx
-            kubectl get pods -n nginx -o jsonpath="{.items[*].spec.containers[*].name} {.items[*].status.containerStatuses[*].state}"
+            echo "Waiting 15 seconds to allow pod time to initialize before running test"
+            sleep 15
+            kubectl get pods -n busybox
+            kubectl get events -n busybox
+            kubectl describe pods -n busybox
+            kubectl get pods -n busybox --field-selector=status.phase!=Running -o jsonpath="{.items[*].spec.containers[*].name}" 
+
             exit 0
         fi
       securityContext:
