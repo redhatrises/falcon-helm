@@ -31,6 +31,5 @@ jobs:
         with:
           config: .cr.yaml
           charts_dir: helm-charts
-
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
