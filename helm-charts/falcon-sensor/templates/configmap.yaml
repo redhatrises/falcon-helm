@@ -36,4 +36,3 @@ data:
   FALCON_RESOURCES: '{{ toJson .Values.container.sensorResources | b64enc }}'
   {{- end }}
   {{- end }}
-  TEST: TEST
